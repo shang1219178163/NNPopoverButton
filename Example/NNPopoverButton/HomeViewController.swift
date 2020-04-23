@@ -65,7 +65,19 @@ class HomeViewController: UIViewController {
         btn.center = view.center
         view.addSubview(btn)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapAction))
+        view.addGestureRecognizer(tap)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,6 +89,12 @@ class HomeViewController: UIViewController {
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
         sender.presentPopover()
         
+    }
+    
+    @objc func handleTapAction() {
+        print("\(#function)")
+        let controller = ListViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 
 }

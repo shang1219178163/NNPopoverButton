@@ -94,9 +94,13 @@ public extension NNPopoverButton {
 
         guard let superview = superview else { return }
         var rect = frame
-        if superview.isKind(of: UINavigationBar.classForCoder()) {
-            rect = superview.convert(frame, to: parentVC.view)
-        }
+//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.classForCoder())
+//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.classForCoder())
+//        let inToolbar: Bool = superview.isKind(of: UIToolbar.classForCoder())
+//        if inNavigationBar || inTableViewCell || inToolbar {
+//            rect = superview.convert(frame, to: parentVC.view)
+//        }
+        rect = superview.convert(frame, to: parentVC.view)
 
         guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection
