@@ -18,7 +18,7 @@ import UIKit
 
     public var parentVC: UIViewController?
     
-    lazy var popoverContentVC: NNPopoverListController = {
+    public lazy var popoverContentVC: NNPopoverListController = {
         let controller = NNPopoverListController()
         controller.modalPresentationStyle = .popover
 

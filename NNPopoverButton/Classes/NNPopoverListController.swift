@@ -7,16 +7,16 @@
 
 import UIKit
 
-@objc protocol NNPopoverListDelegate{
+@objc public protocol NNPopoverListDelegate{
     @objc func popoverList(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 
 }
     
-@objcMembers class NNPopoverListController: UIViewController {
+@objcMembers public class NNPopoverListController: UIViewController {
 
-    weak var delegate: NNPopoverListDelegate?
+    public weak var delegate: NNPopoverListDelegate?
 
-    var list: [String] = []{
+    public var list: [String] = []{
         willSet{
             tableView.reloadData()
         }
@@ -24,7 +24,7 @@ import UIKit
     
     var indexP: IndexPath = IndexPath(row: 0, section: 0)
 
-    lazy var tableView: UITableView = {
+    public lazy var tableView: UITableView = {
         let view: UITableView = UITableView(frame: self.view.bounds, style: .plain)
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
@@ -41,14 +41,14 @@ import UIKit
     }()
     
     // MARK: -life cycle
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         view.addSubview(tableView)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
     }
@@ -57,15 +57,15 @@ import UIKit
 
 extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
     //    MARK: - tableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count;
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.rowHeight
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
@@ -84,7 +84,7 @@ extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexP != indexPath  {
             let newCell = tableView.cellForRow(at: indexPath)
             newCell?.accessoryType = .checkmark
@@ -98,7 +98,7 @@ extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
         delegate?.popoverList(tableView, didSelectRowAt: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01;
     }
     
@@ -106,7 +106,7 @@ extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
 //        return UIView();
 //    }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01;
     }
     

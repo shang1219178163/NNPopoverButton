@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         button.parentVC = self
         button.contentWidth = 200
         button.list = ["0", "1", "2", "3", "4", "5", "6",]
-        
+                
         button.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
         return button
     }()
@@ -64,6 +64,8 @@ class HomeViewController: UIViewController {
         btn.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
         btn.center = view.center
         view.addSubview(btn)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
