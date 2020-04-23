@@ -5,6 +5,12 @@
 [![License](https://img.shields.io/cocoapods/l/NNPopoverButton.svg?style=flat)](https://cocoapods.org/pods/NNPopoverButton)
 [![Platform](https://img.shields.io/cocoapods/p/NNPopoverButton.svg?style=flat)](https://cocoapods.org/pods/NNPopoverButton)
 
+![](https://github.com/shang1219178163/NNPopoverButton/blob/master/screenshots/WechatIMG388.jpeg?raw=true)
+
+![](https://github.com/shang1219178163/NNPopoverButton/blob/master/screenshots/WechatIMG389.jpeg?raw=true)
+
+![](https://github.com/shang1219178163/NNPopoverButton/blob/master/screenshots/WechatIMG391.jpeg?raw=true)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
