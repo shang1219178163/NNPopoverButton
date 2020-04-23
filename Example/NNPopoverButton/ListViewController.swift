@@ -56,7 +56,6 @@ import NNPopoverButton
     }()
     
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
-        print(sender.superview)
         sender.presentPopover()
 
     }
