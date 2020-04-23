@@ -1,0 +1,33 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '9.0'
+use_frameworks!
+
+target 'NNPopoverButton_Example' do
+  pod 'NNPopoverButton', :path => '../'
+
+  # pod 'Alamofire'
+  # pod 'AlamofireImage'
+  # pod 'IQKeyboardManagerSwift'
+  # pod 'Kingfisher'
+  # pod 'SDWebImage'
+  # pod 'MBProgressHUD'
+  # pod 'MMPopupView'
+  # pod 'MJRefresh'
+  # pod 'SnapKit'
+  # pod 'SnapKitExtend'
+  # pod 'SwiftExpand'
+  # pod 'HandyJSON'
+  # pod 'RxCocoa'
+  # pod 'RxSwift'
+
+  # pod ‘YYCache'
+  # pod 'YYCategories'
+  # pod 'YYModel'
+
+  target 'NNPopoverButton_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
