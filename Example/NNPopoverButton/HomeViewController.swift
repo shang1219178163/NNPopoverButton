@@ -46,7 +46,8 @@ class HomeViewController: UIViewController {
         button.sizeToFit()
         button.parentVC = self
         button.list = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20",]
-
+        button.tapDimmingViewDismiss = false
+        
         button.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
         return button
     }()
@@ -102,5 +103,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: NNPopoverButtonDelegate {
     public func popoverButton(_ popoverBtn: NNPopoverButton, tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(#function):\(indexPath.row)")
+        
+//        popoverBtn.dismiss()
     }
 }
