@@ -1,0 +1,16 @@
+PODS:
+  - NNPopoverButton (1.0.0)
+
+DEPENDENCIES:
+  - NNPopoverButton (from `../`)
+
+EXTERNAL SOURCES:
+  NNPopoverButton:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  NNPopoverButton: 00552de6d26474e7d30096e58b441748c4487d85
+
+PODFILE CHECKSUM: f223b422d44768be9319761b0a9b28cdd24f12a4
+
+COCOAPODS: 1.9.1

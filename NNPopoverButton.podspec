@@ -1,9 +1,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NNPopoverButton'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of NNPopoverButton.'
-  s.description      = 'TODO: Add long description of the pod here.'
+  s.version          = '1.0.0'
+  s.summary          = 'iOS 原生 Popover 封装'
+  s.description      = '极简封装 PopoverButton'
 
   s.homepage         = 'https://github.com/shang1219178163/NNPopoverButton'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -16,9 +16,6 @@ Pod::Spec.new do |s|
   s.swift_version = "5.0"
   s.requires_arc = true
 
-  s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage',
-    'CoreLocation','CoreTelephony', 'GLKit','QuartzCore', 'WebKit'
-
   s.source_files = 'NNPopoverButton/Classes/**/*'
   
   # s.resource_bundles = {
@@ -26,6 +23,8 @@ Pod::Spec.new do |s|
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  # s.frameworks = 'UIKit', 'CoreFoundation', 'CoreText', 'CoreGraphics', 'CoreImage',
+  #    'CoreLocation','CoreTelephony', 'GLKit','QuartzCore', 'WebKit'
+  
   # s.dependency 'AFNetworking', '~> 2.3'
 end

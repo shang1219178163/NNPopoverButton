@@ -49,11 +49,11 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		65D1360092A3AB4533E2E527 /* Pods_NNPopoverButton_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NNPopoverButton_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DD11C366B1CE2311CBBC64 /* Pods-NNPopoverButton_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNPopoverButton_Example.release.xcconfig"; path = "Target Support Files/Pods-NNPopoverButton_Example/Pods-NNPopoverButton_Example.release.xcconfig"; sourceTree = "<group>"; };
-		84C42CA9F9CEA5EB3ABBF795 /* NNPopoverButton.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = NNPopoverButton.podspec; path = ../NNPopoverButton.podspec; sourceTree = "<group>"; };
-		94D5F74A1CEF172F2E4679D0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		84C42CA9F9CEA5EB3ABBF795 /* NNPopoverButton.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = NNPopoverButton.podspec; path = ../NNPopoverButton.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94D5F74A1CEF172F2E4679D0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A686F0881D59C5F78C5FFC7F /* Pods_NNPopoverButton_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NNPopoverButton_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB1E1807C1AE94CA36C86D3 /* Pods-NNPopoverButton_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNPopoverButton_Tests.debug.xcconfig"; path = "Target Support Files/Pods-NNPopoverButton_Tests/Pods-NNPopoverButton_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F32A3BE782CAF0F4680CD0DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F32A3BE782CAF0F4680CD0DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +157,6 @@
 				EFB1E1807C1AE94CA36C86D3 /* Pods-NNPopoverButton_Tests.debug.xcconfig */,
 				0E01D0D9E9A5933B567D3E9A /* Pods-NNPopoverButton_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
