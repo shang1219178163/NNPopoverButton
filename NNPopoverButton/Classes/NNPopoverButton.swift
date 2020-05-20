@@ -36,6 +36,7 @@ import UIKit
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +44,10 @@ import UIKit
     }
     
     // MARK: -funtions
+    @objc func showPopoverAction(_ sender: NNPopoverButton) {
+        sender.presentPopover()
+    }
+    
     public func presentPopover(_ arrowDirection: UIPopoverArrowDirection = .up, completion: (() -> Void)? = nil){
         assert(list.count != 0, "list 不能为空")
         guard let parentVC = parentVC else {
