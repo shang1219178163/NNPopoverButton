@@ -73,9 +73,6 @@ import UIKit
 
         guard let superview = superview else { return }
         let rect = superview.convert(frame, to: parentVC.view)
-//        if arrowDirection.rawValue == 0 {
-//            rect = CGRect(x: rect.minX, y: rect.minY + rect.height, width: rect.width, height: rect.height)
-//        }
 
         guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection
@@ -87,7 +84,7 @@ import UIKit
     
     public func dismiss(){
         if popoverContentVC.presentingViewController == nil {
-            return;
+            return
         }
         DispatchQueue.main.async {
             self.popoverContentVC.dismiss(animated: false, completion: nil)
