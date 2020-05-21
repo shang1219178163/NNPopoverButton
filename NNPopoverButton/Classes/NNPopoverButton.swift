@@ -72,14 +72,10 @@ import UIKit
         popoverContentVC.list = list
 
         guard let superview = superview else { return }
-        var rect = frame
-//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.classForCoder())
-//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.classForCoder())
-//        let inToolbar: Bool = superview.isKind(of: UIToolbar.classForCoder())
-//        if inNavigationBar || inTableViewCell || inToolbar {
-//            rect = superview.convert(frame, to: parentVC.view)
+        let rect = superview.convert(frame, to: parentVC.view)
+//        if arrowDirection.rawValue == 0 {
+//            rect = CGRect(x: rect.minX, y: rect.minY + rect.height, width: rect.width, height: rect.height)
 //        }
-        rect = superview.convert(frame, to: parentVC.view)
 
         guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection

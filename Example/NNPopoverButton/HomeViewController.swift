@@ -88,8 +88,8 @@ class HomeViewController: UIViewController {
     
     // MARK: -funtions
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
-        sender.presentPopover()
-        
+//        sender.presentPopover()
+        print("\(#function)_\(sender)")
     }
     
     @objc func handleTapAction() {

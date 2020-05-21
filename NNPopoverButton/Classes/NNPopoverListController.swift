@@ -75,7 +75,7 @@ extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
         cell!.layoutMargins = .zero;
         
         cell!.textLabel?.font = UIFont.systemFont(ofSize: 15)
-        cell!.textLabel?.textColor = indexP == indexPath ? UIColor.systemBlue : UIColor.gray;
+        cell!.textLabel?.textColor = indexP == indexPath ? .systemBlue : .gray;
         cell!.accessoryType = indexP == indexPath ? .checkmark : .none;
         
         cell!.textLabel?.text = list[indexPath.row]
@@ -92,7 +92,7 @@ extension NNPopoverListController: UITableViewDataSource, UITableViewDelegate {
 
             let oldCell = tableView.cellForRow(at: indexP)
             oldCell?.accessoryType = .none
-            oldCell?.textLabel?.textColor = UIColor.gray;
+            oldCell?.textLabel?.textColor = .gray;
             indexP = indexPath
         }
         delegate?.popoverList(tableView, didSelectRowAt: indexPath)
