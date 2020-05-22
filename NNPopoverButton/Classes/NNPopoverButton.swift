@@ -49,6 +49,10 @@ import UIKit
     }
     
     public func presentPopover(_ arrowDirection: UIPopoverArrowDirection = .up, completion: (() -> Void)? = nil){
+        if popoverContentVC.presentingViewController != nil {
+            return
+        }
+        
         assert(list.count != 0, "list 不能为空")
         guard let parentVC = parentVC else {
             print("\(#function): parentVC 不能为空")
@@ -72,7 +76,14 @@ import UIKit
         popoverContentVC.list = list
 
         guard let superview = superview else { return }
-        let rect = superview.convert(frame, to: parentVC.view)
+        var rect = frame
+//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.classForCoder())
+//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.classForCoder())
+//        let inToolbar: Bool = superview.isKind(of: UIToolbar.classForCoder())
+//        if inNavigationBar || inTableViewCell || inToolbar {
+//            rect = superview.convert(frame, to: parentVC.view)
+//        }
+        rect = superview.convert(frame, to: parentVC.view)
 
         guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection
@@ -84,7 +95,7 @@ import UIKit
     
     public func dismiss(){
         if popoverContentVC.presentingViewController == nil {
-            return
+            return;
         }
         DispatchQueue.main.async {
             self.popoverContentVC.dismiss(animated: false, completion: nil)
