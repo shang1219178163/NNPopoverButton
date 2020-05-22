@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NNPopoverButton'
-  s.version          = '1.3.3'
+  s.version          = '1.4.0'
   s.summary          = 'iOS 原生 Popover 封装'
   s.description      = '极简封装 PopoverButton'
 
