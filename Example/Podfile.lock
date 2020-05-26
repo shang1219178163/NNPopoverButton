@@ -1,5 +1,5 @@
 PODS:
-  - NNPopoverButton (1.1.0)
+  - NNPopoverButton (1.4.0)
 
 DEPENDENCIES:
   - NNPopoverButton (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NNPopoverButton: 53bd20e7d5d187281d91de597740d6b13d9de693
+  NNPopoverButton: 6dfdd4db1af3271dc61f2509ebfe4c2372d6812d
 
 PODFILE CHECKSUM: f223b422d44768be9319761b0a9b28cdd24f12a4
 

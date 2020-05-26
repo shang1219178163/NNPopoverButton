@@ -77,9 +77,9 @@ import UIKit
 
         guard let superview = superview else { return }
         var rect = frame
-//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.classForCoder())
-//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.classForCoder())
-//        let inToolbar: Bool = superview.isKind(of: UIToolbar.classForCoder())
+//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.self)
+//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.self)
+//        let inToolbar: Bool = superview.isKind(of: UIToolbar.self)
 //        if inNavigationBar || inTableViewCell || inToolbar {
 //            rect = superview.convert(frame, to: parentVC.view)
 //        }
@@ -157,9 +157,9 @@ extension NNPopoverButton: NNPopoverListDelegate {
 //
 //        guard let superview = superview else { return }
 //        var rect = frame
-////        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.classForCoder())
-////        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.classForCoder())
-////        let inToolbar: Bool = superview.isKind(of: UIToolbar.classForCoder())
+////        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.self)
+////        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.self)
+////        let inToolbar: Bool = superview.isKind(of: UIToolbar.self)
 ////        if inNavigationBar || inTableViewCell || inToolbar {
 ////            rect = superview.convert(frame, to: parentVC.view)
 ////        }
