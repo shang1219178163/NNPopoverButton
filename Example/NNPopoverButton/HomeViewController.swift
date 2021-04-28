@@ -43,7 +43,10 @@ class HomeViewController: UIViewController {
         sender.backgroundColor = UIColor.systemBlue
         
         sender.sizeToFit()
-        sender.list = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20",]
+        sender.list = ["0", "1", "2", "3", "4",
+                       "5", "6","7", "8", "9", "10",
+                       "11", "12","13", "14", "15",
+                       "16", "17", "18", "19", "20",]
         sender.block = { sender, tableView, indexP in
             print("\(#function)_\(sender.currentTitle ?? "")_\(indexP.row)")
         }
@@ -62,7 +65,10 @@ class HomeViewController: UIViewController {
         sender.backgroundColor = UIColor.systemBlue
         
         sender.sizeToFit()
-        sender.list = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20",]
+        sender.list = ["0", "1", "2", "3", "4",
+                       "5", "6","7", "8", "9", "10",
+                       "11", "12","13", "14", "15",
+                       "16", "17", "18", "19", "20",]
         sender.isTapBackViewDismiss = true
 //        sender.contentVC = popoverContentVC
         
@@ -78,7 +84,10 @@ class HomeViewController: UIViewController {
         sender.backgroundColor = UIColor.systemBlue
         
         sender.sizeToFit()
-        sender.list = ["0", "1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18", "19", "20",]
+        sender.list = ["0", "1", "2", "3", "4",
+                       "5", "6","7", "8", "9", "10",
+                       "11", "12","13", "14", "15",
+                       "16", "17", "18", "19", "20",]
 //        sender.rowCount = 6
 
         return sender
