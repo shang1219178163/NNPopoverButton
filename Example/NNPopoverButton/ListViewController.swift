@@ -44,20 +44,18 @@ import NNPopoverButton
     }
     
     lazy var popoverBtn: NNPopoverButton = {
-        let button = NNPopoverButton(type: .custom)
-        button.setTitle("Right", for: .normal)
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
-        button.sizeToFit()
-        button.parentVC = self
-        button.list = ["00", "11", "22", "33", "44", "55", "66",]
+        let sender = NNPopoverButton(type: .custom)
+        sender.setTitle("Right", for: .normal)
+        sender.setTitleColor(UIColor.systemBlue, for: .normal)
+        sender.sizeToFit()
+        sender.list = ["00", "11", "22", "33", "44", "55", "66",]
 
-        button.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
-        return button
+        sender.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
+        return sender
     }()
     
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
         sender.presentPopover()
-
     }
     
     // MARK: - lifecycle
@@ -69,7 +67,9 @@ import NNPopoverButton
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        
+                
+//        self.preferredContentSize = CGSize(width: UIScreen.main.bounds.width*0.8, height: UIScreen.main.bounds.height*0.5)
+//        print(#function, #line, ":preferredContentSize", preferredContentSize)
     }
         
     override func didReceiveMemoryWarning() {
@@ -103,34 +103,32 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
-        }
-        cell!.selectionStyle = .none;
-        cell!.separatorInset = .zero;
-        cell!.layoutMargins = .zero;
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell") ?? UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
+        cell.selectionStyle = .none;
+        cell.separatorInset = .zero;
+        cell.layoutMargins = .zero;
         
-        cell!.textLabel?.font = UIFont.systemFont(ofSize: 15)
-        cell!.textLabel?.textColor = UIColor.systemBlue
-        cell!.textLabel?.text = "row_\(indexPath.row)"
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+        cell.textLabel?.textColor = UIColor.systemBlue
+        cell.textLabel?.text = "row_\(indexPath.row)"
 
         var popoverBtn: NNPopoverButton {
-            let button = NNPopoverButton(type: .custom)
-            button.setTitle("Show", for: .normal)
-            button.setTitleColor(UIColor.systemBlue, for: .normal)
-            button.sizeToFit()
-            button.parentVC = self
-            button.list = ["00", "11", "22", "33", "44", "55", "66",]
+            let sender = NNPopoverButton(type: .custom)
+            sender.setTitle("Show", for: .normal)
+            sender.setTitleColor(UIColor.systemBlue, for: .normal)
+            sender.sizeToFit()
+//            sender.list = ["00", "11", "22", "33", "44", "55", "66",]
+            sender.list = ["row_\(indexPath.row)",]
+//            sender.contentWidth = 150
 
-            button.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
-            return button
+            sender.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
+            return sender
         }
         
-        cell!.accessoryView = popoverBtn
+        cell.accessoryView = popoverBtn
 
 //        cell.getViewLayer()
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

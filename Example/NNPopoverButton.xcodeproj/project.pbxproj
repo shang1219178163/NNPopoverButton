@@ -13,6 +13,7 @@
 		146050F323A3212300C10F34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 146050F523A3212300C10F34 /* Localizable.strings */; };
 		146050FB23A3228E00C10F34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146050F923A3228E00C10F34 /* LaunchScreen.xib */; };
 		146D28E024516A57004655B1 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D28DF24516A57004655B1 /* ListViewController.swift */; };
+		14995D7A263910BC001DA1D9 /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14995D79263910BC001DA1D9 /* GreenViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* HomeViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -32,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		0E01D0D9E9A5933B567D3E9A /* Pods-NNPopoverButton_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNPopoverButton_Tests.release.xcconfig"; path = "Target Support Files/Pods-NNPopoverButton_Tests/Pods-NNPopoverButton_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		146050B523A313C600C10F34 /* NNPopoverButton_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NNPopoverButton_Example.entitlements; sourceTree = "<group>"; };
 		146050E923A31FAD00C10F34 /* NSObject+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Helper.swift"; sourceTree = "<group>"; };
 		146050EE23A3210200C10F34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		146050F023A3210400C10F34 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -40,6 +40,7 @@
 		146050F623A3212500C10F34 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		146050FA23A3228E00C10F34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		146D28DF24516A57004655B1 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		14995D79263910BC001DA1D9 /* GreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
 		3F349D186CBED8C12198AA0F /* Pods-NNPopoverButton_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNPopoverButton_Example.debug.xcconfig"; path = "Target Support Files/Pods-NNPopoverButton_Example/Pods-NNPopoverButton_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* NNPopoverButton_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NNPopoverButton_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				146050B523A313C600C10F34 /* NNPopoverButton_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for NNPopoverButton */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -106,6 +106,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* HomeViewController.swift */,
 				146D28DF24516A57004655B1 /* ListViewController.swift */,
+				14995D79263910BC001DA1D9 /* GreenViewController.swift */,
 				146050E923A31FAD00C10F34 /* NSObject+Helper.swift */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -367,6 +368,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				146D28E024516A57004655B1 /* ListViewController.swift in Sources */,
 				146050EA23A31FAD00C10F34 /* NSObject+Helper.swift in Sources */,
+				14995D7A263910BC001DA1D9 /* GreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
