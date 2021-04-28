@@ -15,22 +15,19 @@ import UIKit
 @objcMembers public class NNPopoverButton: UIButton {
 
     public weak var delegate: NNPopoverButtonDelegate?
+    public var block: ((NNPopoverButton, UITableView, IndexPath)->Void)?
 
-    public var parentVC: UIViewController?
+    public var parentVC: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
     
-    public lazy var popoverContentVC: NNPopoverListController = {
-        let controller = NNPopoverListController()
-        controller.modalPresentationStyle = .popover
-
-        return controller
-    }()
-    
+    public var contentVC: UIViewController = NNPopoverTableController()
     public var contentSize: CGSize = .zero
-    public var contentWidth: CGFloat = 0.0
+    public var contentWidth: CGFloat = UIScreen.main.bounds.width*0.5
 
+    public var isTapBackViewDismiss: Bool = true
+    public var isShowTableContentVC: Bool = true
     public var list: [String] = []
 
-    public var tapDimmingViewDismiss: Bool = true
+    public var rowCount = NSInteger.max
 
     // MARK: -lifecycle
     override init(frame: CGRect) {
@@ -45,60 +42,52 @@ import UIKit
     
     // MARK: -funtions
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
-        sender.presentPopover()
+        if isShowTableContentVC {
+            presentPopover(contentVC, arrowDirection: .any, completion: nil)
+        }
     }
     
-    public func presentPopover(_ arrowDirection: UIPopoverArrowDirection = .up, completion: (() -> Void)? = nil){
-        if popoverContentVC.presentingViewController != nil {
+    public func presentPopover(_ contentVC: UIViewController = NNPopoverTableController(),
+                               arrowDirection: UIPopoverArrowDirection = .any,
+                               completion: (() -> Void)? = nil){
+        if contentVC.presentingViewController != nil {
             return
         }
-        
-        assert(list.count != 0, "list 不能为空")
-        guard let parentVC = parentVC else {
-            print("\(#function): parentVC 不能为空")
-            return
-        }
-        
-        if parentVC.conforms(to: NNPopoverButtonDelegate.self) {
-            delegate = parentVC as? NNPopoverButtonDelegate;
+        contentVC.modalPresentationStyle = .popover
+        if __CGSizeEqualToSize(.zero, contentVC.preferredContentSize) == false {
+
+        } else if __CGSizeEqualToSize(.zero, contentSize) == false {
+            contentVC.preferredContentSize = contentSize
         }
 
-        popoverContentVC.modalPresentationStyle = .popover
-        if __CGSizeEqualToSize(.zero, contentSize) == false {
-            popoverContentVC.preferredContentSize = contentSize
-        } else {
-            let heigth: CGFloat = popoverContentVC.tableView.rowHeight * CGFloat(list.count)
-            let width: CGFloat = contentWidth > 0 ? contentWidth : frame.width*2
-            popoverContentVC.preferredContentSize = CGSize(width: width, height: heigth)
+        if let vc = contentVC as? NNPopoverTableController {
+            if __CGSizeEqualToSize(.zero, contentVC.preferredContentSize) == false {
+                
+            } else {
+                let heigth: CGFloat = vc.tableView.rowHeight * CGFloat(min(list.count, rowCount))
+                vc.preferredContentSize = CGSize(width: contentWidth, height: heigth)
+            }
+            vc.delegate = self
+            vc.list = list
         }
-        
-        popoverContentVC.delegate = self
-        popoverContentVC.list = list
 
-        guard let superview = superview else { return }
-        var rect = frame
-//        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.self)
-//        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.self)
-//        let inToolbar: Bool = superview.isKind(of: UIToolbar.self)
-//        if inNavigationBar || inTableViewCell || inToolbar {
-//            rect = superview.convert(frame, to: parentVC.view)
-//        }
-        rect = superview.convert(frame, to: parentVC.view)
+        guard let superview = superview, let rootViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        let rect = superview.convert(frame, to: rootViewController.view)
 
-        guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
+        guard let popoverPresentationVC = contentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection
-        popoverPresentationVC.sourceView = parentVC.view
+        popoverPresentationVC.sourceView = rootViewController.view
         popoverPresentationVC.sourceRect = rect
         popoverPresentationVC.delegate = self
-        parentVC.present(popoverContentVC, animated: true, completion: completion)
+        rootViewController.present(contentVC, animated: true, completion: completion)
     }
     
     public func dismiss(){
-        if popoverContentVC.presentingViewController == nil {
+        if contentVC.presentingViewController == nil {
             return;
         }
         DispatchQueue.main.async {
-            self.popoverContentVC.dismiss(animated: false, completion: nil)
+            self.contentVC.dismiss(animated: false, completion: nil)
         }
     }
 }
@@ -109,73 +98,30 @@ extension NNPopoverButton: UIPopoverPresentationControllerDelegate {
         return .none
     }
      
+    public func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+//        setAlphaOfBackgroundViews(0.7)
+    }
+    
     public func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
-        return tapDimmingViewDismiss
+        return isTapBackViewDismiss
     }
     
     public func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
 //        setAlphaOfBackgroundViews(1)
     }
 
-    public func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
-//        setAlphaOfBackgroundViews(0.7)
+    public func popoverPresentationController(_ popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverTo rect: UnsafeMutablePointer<CGRect>, in view: AutoreleasingUnsafeMutablePointer<UIView>) {
+        print(#function, rect, view)
     }
+
 }
 
-extension NNPopoverButton: NNPopoverListDelegate {
-    public func popoverList(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension NNPopoverButton: NNPopoverTableDelegate {
+    public func popover(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.popoverButton(self, tableView: tableView, didSelectRowAt: indexPath)
+        block?(self, tableView, indexPath)
         dismiss()
     }
 }
 
 
-//public extension NNPopoverButton {
-//    
-//    @objc func presentPopover(_ arrowDirection: UIPopoverArrowDirection = .up, completion: (() -> Void)? = nil){
-//        assert(list.count != 0, "list 不能为空")
-//        guard let parentVC = parentVC else {
-//            print("\(#function): parentVC 不能为空")
-//            return
-//        }
-//        
-//        if parentVC.conforms(to: NNPopoverButtonDelegate.self) {
-//            delegate = parentVC as? NNPopoverButtonDelegate;
-//        }
-//
-//        popoverContentVC.modalPresentationStyle = .popover
-//        if __CGSizeEqualToSize(.zero, contentSize) == false {
-//            popoverContentVC.preferredContentSize = contentSize
-//        } else {
-//            let heigth: CGFloat = popoverContentVC.tableView.rowHeight * CGFloat(list.count)
-//            let width: CGFloat = contentWidth > 0 ? contentWidth : frame.width*2
-//            popoverContentVC.preferredContentSize = CGSize(width: width, height: heigth)
-//        }
-//        
-//        popoverContentVC.delegate = self
-//        popoverContentVC.list = list
-//
-//        guard let superview = superview else { return }
-//        var rect = frame
-////        let inNavigationBar: Bool = superview.isKind(of: UINavigationBar.self)
-////        let inTableViewCell: Bool = superview.isKind(of: UITableViewCell.self)
-////        let inToolbar: Bool = superview.isKind(of: UIToolbar.self)
-////        if inNavigationBar || inTableViewCell || inToolbar {
-////            rect = superview.convert(frame, to: parentVC.view)
-////        }
-//        rect = superview.convert(frame, to: parentVC.view)
-//
-//        guard let popoverPresentationVC = popoverContentVC.popoverPresentationController else { return }
-//        popoverPresentationVC.permittedArrowDirections = arrowDirection
-//        popoverPresentationVC.sourceView = parentVC.view
-//        popoverPresentationVC.sourceRect = rect
-//        popoverPresentationVC.delegate = self
-//        parentVC.present(popoverContentVC, animated: true, completion: completion)
-//    }
-//    
-//    @objc func dismiss(){
-//        DispatchQueue.main.async {
-//            self.popoverContentVC.dismiss(animated: false, completion: nil)
-//        }
-//    }
-//}
