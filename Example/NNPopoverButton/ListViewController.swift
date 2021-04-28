@@ -117,15 +117,21 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate{
             sender.setTitle("Show", for: .normal)
             sender.setTitleColor(UIColor.systemBlue, for: .normal)
             sender.sizeToFit()
+            
 //            sender.list = ["00", "11", "22", "33", "44", "55", "66",]
             sender.list = ["row_\(indexPath.row)",]
 //            sender.contentWidth = 150
 
+            sender.arrowDirection = UIPopoverArrowDirection(rawValue: 0)
+            sender.offset = UIOffset(horizontal: -120, vertical: 10)
+            
             sender.addTarget(self, action: #selector(showPopoverAction(_:)), for: .touchUpInside)
             return sender
         }
         
         cell.accessoryView = popoverBtn
+        cell.accessoryView?.layer.borderWidth = 1
+        cell.accessoryView?.layer.borderColor = UIColor.blue.cgColor
 
 //        cell.getViewLayer()
         return cell

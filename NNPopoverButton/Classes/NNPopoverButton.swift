@@ -22,7 +22,11 @@ import UIKit
     public var contentVC: UIViewController = NNPopoverTableController()
     public var contentSize: CGSize = .zero
     public var contentWidth: CGFloat = UIScreen.main.bounds.width*0.5
-
+    ///UIPopoverArrowDirection(rawValue: 0) 时无箭头
+    public var arrowDirection: UIPopoverArrowDirection = .any
+    ///contentVC 偏移/位置调整
+    public var offset: UIOffset = .zero
+    
     public var isTapBackViewDismiss: Bool = true
     public var isShowTableContentVC: Bool = true
     public var list: [String] = []
@@ -43,25 +47,26 @@ import UIKit
     // MARK: -funtions
     @objc func showPopoverAction(_ sender: NNPopoverButton) {
         if isShowTableContentVC {
-            presentPopover(contentVC, arrowDirection: .any, completion: nil)
+            presentPopover(contentVC, arrowDirection: arrowDirection, offset: offset, completion: nil)
         }
     }
     
     public func presentPopover(_ contentVC: UIViewController = NNPopoverTableController(),
                                arrowDirection: UIPopoverArrowDirection = .any,
+                               offset: UIOffset = .zero,
                                completion: (() -> Void)? = nil){
         if contentVC.presentingViewController != nil {
             return
         }
         contentVC.modalPresentationStyle = .popover
-        if __CGSizeEqualToSize(.zero, contentVC.preferredContentSize) == false {
+        if contentVC.preferredContentSize.equalTo(.zero) == false {
 
-        } else if __CGSizeEqualToSize(.zero, contentSize) == false {
+        } else if contentSize.equalTo(.zero) == false {
             contentVC.preferredContentSize = contentSize
         }
 
         if let vc = contentVC as? NNPopoverTableController {
-            if __CGSizeEqualToSize(.zero, contentVC.preferredContentSize) == false {
+            if contentVC.preferredContentSize.equalTo(.zero) == false {
                 
             } else {
                 let heigth: CGFloat = vc.tableView.rowHeight * CGFloat(min(list.count, rowCount))
@@ -71,13 +76,14 @@ import UIKit
             vc.list = list
         }
 
-        guard let superview = superview, let rootViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+        guard let superview = superview,
+              let rootViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         let rect = superview.convert(frame, to: rootViewController.view)
 
         guard let popoverPresentationVC = contentVC.popoverPresentationController else { return }
         popoverPresentationVC.permittedArrowDirections = arrowDirection
         popoverPresentationVC.sourceView = rootViewController.view
-        popoverPresentationVC.sourceRect = rect
+        popoverPresentationVC.sourceRect = rect.offsetBy(dx: offset.horizontal, dy: offset.vertical)
         popoverPresentationVC.delegate = self
         rootViewController.present(contentVC, animated: true, completion: completion)
     }
