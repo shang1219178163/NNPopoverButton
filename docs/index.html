@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NNPopoverButton — 极简封装 iOS 原生 Popover 的 UIButton 组件" />
+  <title>NNPopoverButton · iOS 原生 Popover 封装</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#">NNPopoverButton</a>
+    <nav class="nav">
+      <a href="#features">特性</a>
+      <a href="#install">安装</a>
+      <a href="#usage">用法</a>
+      <a href="#api">API</a>
+      <a class="nav-cta" href="https://github.com/shang1219178163/NNPopoverButton" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="brand-mark">NNPopoverButton</p>
+      <h1>一键弹出原生 Popover</h1>
+      <p class="lead">基于 <code>UIPopoverPresentationController</code> 的极简 UIButton 封装，列表选择与自定义内容开箱即用。</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#install">快速接入</a>
+        <a class="btn btn-ghost" href="https://github.com/shang1219178163/NNPopoverButton" target="_blank" rel="noopener">查看源码</a>
+      </div>
+      <ul class="meta-badges" aria-label="项目信息">
+        <li>CocoaPods · v2.1.0</li>
+        <li>iOS 9.0+</li>
+        <li>Swift 5</li>
+        <li>MIT License</li>
+      </ul>
+    </section>
+
+    <section class="showcase" aria-label="效果预览">
+      <div class="shot-rail">
+        <figure class="shot">
+          <img src="assets/WechatIMG388.jpeg" alt="导航栏左侧弹出 Popover 列表" width="390" height="844" loading="eager" />
+        </figure>
+        <figure class="shot shot-focus">
+          <img src="assets/WechatIMG389.jpeg" alt="页面中部按钮弹出 Popover" width="390" height="844" loading="eager" />
+        </figure>
+        <figure class="shot">
+          <img src="assets/WechatIMG391.jpeg" alt="底部按钮弹出 Popover" width="390" height="844" loading="lazy" />
+        </figure>
+        <figure class="shot">
+          <img src="assets/WechatIMG392.jpeg" alt="自定义 Popover 内容视图" width="390" height="844" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2>核心特性</h2>
+      <p class="section-desc">把原生 Popover 流程收敛到一个按钮上，减少样板代码。</p>
+      <ul class="feature-list">
+        <li>
+          <strong>原生体验</strong>
+          <span>直接使用系统 Popover，箭头方向、自适应样式与系统一致。</span>
+        </li>
+        <li>
+          <strong>内置列表</strong>
+          <span>默认 <code>NNPopoverTableController</code>，传入字符串数组即可展示选项。</span>
+        </li>
+        <li>
+          <strong>自定义内容</strong>
+          <span>通过 <code>contentVC</code> 注入任意视图控制器，扩展菜单之外的场景。</span>
+        </li>
+        <li>
+          <strong>回调灵活</strong>
+          <span>同时支持 Delegate 与闭包，选中后自动 dismiss。</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="install" class="section">
+      <h2>安装</h2>
+      <p class="section-desc">通过 CocoaPods 引入，在 Podfile 中添加：</p>
+      <pre class="code-block"><code>pod 'NNPopoverButton'</code></pre>
+      <p class="section-desc">然后执行：</p>
+      <pre class="code-block"><code>pod install</code></pre>
+      <p class="section-desc">运行示例工程：克隆仓库后进入 <code>Example</code> 目录执行 <code>pod install</code>，再用 Xcode 打开 <code>NNPopoverButton.xcworkspace</code>。</p>
+    </section>
+
+    <section id="usage" class="section">
+      <h2>快速用法</h2>
+      <p class="section-desc">创建按钮、配置列表与宽度，即可弹出选择菜单：</p>
+      <pre class="code-block"><code>import NNPopoverButton
+
+let button = NNPopoverButton(type: .custom)
+button.setTitle("选项", for: .normal)
+button.list = ["复制", "粘贴", "删除"]
+button.contentWidth = 160
+button.block = { sender, tableView, indexPath in
+    print("选中第 \(indexPath.row) 项")
+}
+view.addSubview(button)</code></pre>
+      <p class="section-desc">使用自定义内容控制器：</p>
+      <pre class="code-block"><code>button.contentVC = MyCustomViewController()
+button.contentSize = CGSize(width: 240, height: 180)
+button.arrowDirection = .up
+button.offset = UIOffset(horizontal: 0, vertical: 4)</code></pre>
+    </section>
+
+    <section id="api" class="section">
+      <h2>主要 API</h2>
+      <p class="section-desc"><code>NNPopoverButton</code> 常用属性与方法一览。</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>类型</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>list</code></td>
+              <td><code>[String]</code></td>
+              <td>默认表格内容数据源</td>
+            </tr>
+            <tr>
+              <td><code>contentVC</code></td>
+              <td><code>UIViewController</code></td>
+              <td>弹出内容，默认为表格控制器</td>
+            </tr>
+            <tr>
+              <td><code>contentWidth</code></td>
+              <td><code>CGFloat</code></td>
+              <td>表格内容宽度，默认屏幕一半</td>
+            </tr>
+            <tr>
+              <td><code>contentSize</code></td>
+              <td><code>CGSize</code></td>
+              <td>固定弹出尺寸，优先于自动高度</td>
+            </tr>
+            <tr>
+              <td><code>arrowDirection</code></td>
+              <td><code>UIPopoverArrowDirection</code></td>
+              <td>箭头方向；rawValue 为 0 时无箭头</td>
+            </tr>
+            <tr>
+              <td><code>offset</code></td>
+              <td><code>UIOffset</code></td>
+              <td>弹出位置相对按钮的偏移</td>
+            </tr>
+            <tr>
+              <td><code>rowCount</code></td>
+              <td><code>Int</code></td>
+              <td>可见行数上限，用于控制高度</td>
+            </tr>
+            <tr>
+              <td><code>isTapBackViewDismiss</code></td>
+              <td><code>Bool</code></td>
+              <td>点击外部是否关闭，默认 true</td>
+            </tr>
+            <tr>
+              <td><code>delegate</code> / <code>block</code></td>
+              <td>回调</td>
+              <td>选中行时触发</td>
+            </tr>
+            <tr>
+              <td><code>presentPopover(...)</code></td>
+              <td>方法</td>
+              <td>主动弹出内容控制器</td>
+            </tr>
+            <tr>
+              <td><code>dismiss()</code></td>
+              <td>方法</td>
+              <td>关闭当前 Popover</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section section-end">
+      <h2>开始使用</h2>
+      <p class="section-desc">完整示例与实现细节见仓库源码，欢迎 Star 与 Issue。</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://cocoapods.org/pods/NNPopoverButton" target="_blank" rel="noopener">CocoaPods</a>
+        <a class="btn btn-ghost" href="https://github.com/shang1219178163/NNPopoverButton" target="_blank" rel="noopener">GitHub 仓库</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>NNPopoverButton · MIT License · <a href="mailto:shang1219178163@gmail.com">shang1219178163</a></p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.section, .shot').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
